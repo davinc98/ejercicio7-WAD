@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Productos</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+    </h:head>
+    <h:body>
+        
+        <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">
+                        <!--<img src="/imagenes/bootstrap-logo.svg" alt="" width="30" height="24" class="d-inline-block align-text-top">-->
+                        Proyecto V7
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="index.jsp">Inicio</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="listarCategorias">Categorias</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="">Productos</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="">Usuarios</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            
+            
+            
+            <div class="card border-primary mb-3">
+                <div class="card-header">
+                    <h2 class="text-center text-primary">Listado de Productos</h2>
+                </div>
+                <div class="card-body text-primary">
+                    <div class="table-responsive">
+                        <f:view>
+                            <h:form id="frmProductos">
+                                
+                                <h:commandLink action="#{productoMB.preparedAdd()}"
+                                                 immediate="true"
+                                                 class="btn btn-outline-primary">
+                                    Crear Producto
+                                </h:commandLink>
+                                
+                                <h:dataTable var="dto" value="#{productoMB.listaProducto}" class="table table-striped">
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputLabel id="lblIdProducto" value="Clave Producto"/>
+                                        </f:facet>
+                                        <h:outputText value="#{dto.idProducto}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputLabel id="lblNombreProducto" value="Nombre Producto"/>
+                                        </f:facet>
+                                        <h:outputText value="#{dto.nombreProducto}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputLabel id="lblDescripcionProducto" value="Descripcion Producto"/>
+                                        </f:facet>
+                                        <h:outputText value="#{dto.descripcionProducto}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputLabel id="lblExistenciaProducto" value="Existencia Producto"/>
+                                        </f:facet>
+                                        <h:outputText value="#{dto.existencia}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputLabel id="lblPrecioProducto" value="Precio"/>
+                                        </f:facet>
+                                        <h:outputText value="#{dto.precio}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputLabel id="lblClaveCategoria" value="Categoria"/>
+                                        </f:facet>
+                                        <h:outputText value="#{dto.idCategoria.nombreCategoria}"/>
+                                    </h:column>
+                                    
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Editar"/>
+                                        </f:facet>
+                                        <h:commandLink action="#{productoMB.preparedUpdate()}" actionListener="#{productoMB.seleccionarProducto}" immediate="true" class="btn btn-outline-success">
+                                            <f:param name="claveSel" value="#{dto.idProducto}"/>
+                                            Actualizar
+                                        </h:commandLink>
+                                    </h:column>
+                                    
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Eliminar"/>
+                                        </f:facet>
+                                        <h:commandLink action="#{productoMB.delete()}" actionListener="#{productoMB.seleccionarProducto}" immediate="true" class="btn btn-outline-danger">
+                                            <f:param name="claveSel" value="#{dto.idProducto}"/>
+                                            Eliminar
+                                        </h:commandLink>
+                                    </h:column>
+                                </h:dataTable>
+                            </h:form>
+                        </f:view>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>
+
