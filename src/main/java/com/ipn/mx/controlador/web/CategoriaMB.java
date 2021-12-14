@@ -73,6 +73,7 @@ public class CategoriaMB extends BaseBean implements Serializable {
     }
     
     public String preparedListadoCategorias(){
+        init();
         return "listadoCategorias.xhtml?faces-redirect=true";
     }
     

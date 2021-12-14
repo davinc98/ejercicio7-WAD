@@ -86,6 +86,10 @@ public class indexMB extends BaseBean implements Serializable {
         return "/categoria/listadoCategorias?faces-redirect=true";
     }
     
+    public String preparedListadoUsuarios(){
+        return "/usuario/listadoUsuarios?faces-redirect=true";
+    }
+    
     public void resetarMensaje(){
         msg=false;
         mensaje="";

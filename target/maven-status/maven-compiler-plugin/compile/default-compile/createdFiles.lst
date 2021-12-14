@@ -4,6 +4,7 @@ com\ipn\mx\utilerias\EnviarMail.class
 com\ipn\mx\utilerias\HibernateUtil.class
 com\ipn\mx\controlador\web\BaseBean.class
 com\ipn\mx\modelo\dao\UsuarioDAO.class
+com\ipn\mx\controlador\web\UsuarioMB.class
 com\ipn\mx\modelo\dao\ProductoDAO.class
 com\ipn\mx\modelo\entidades\Categoria.class
 com\ipn\mx\controlador\web\indexMB.class

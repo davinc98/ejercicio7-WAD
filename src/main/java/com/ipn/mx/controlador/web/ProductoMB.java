@@ -144,7 +144,10 @@ public class ProductoMB extends BaseBean implements Serializable {
     public String add(){
         Boolean valido = validate();
         if(valido){
-            
+            Categoria cat = new Categoria();
+            cat.setIdCategoria(dto.getIdCat());
+            cat = daoCat.read(cat);
+            dto.setIdCategoria(cat);
             
             dao.create(dto);
             if(valido)
