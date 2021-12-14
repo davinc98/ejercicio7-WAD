@@ -31,6 +31,10 @@ public class ProductoMB extends BaseBean implements Serializable {
     private Producto dto;
     private List<Producto> listaProducto;
     private List<Categoria> listaCategoria;
+    
+    private boolean msg = false;
+    private String mensaje = "";
+    private String alert = "";
 
     /**
      * Creates a new instance of ProductoMB
@@ -45,6 +49,7 @@ public class ProductoMB extends BaseBean implements Serializable {
         
         listaCategoria = daoCat.readAll();
         listaProducto = dao.readAll();
+        msg=false;
     }
 
     public List<Producto> getListaProducto() {
@@ -70,6 +75,31 @@ public class ProductoMB extends BaseBean implements Serializable {
     public void setListaCategoria(List<Categoria> listaCategoria) {
         this.listaCategoria = listaCategoria;
     }
+
+    public String getMensaje() {
+        return mensaje;
+    }
+
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
+    }
+
+    public String getAlert() {
+        return alert;
+    }
+
+    public void setAlert(String alert) {
+        this.alert = alert;
+    }
+
+    public boolean isMsg() {
+        return msg;
+    }
+
+    public void setMsg(boolean msg) {
+        this.msg = msg;
+    }
+    
     
     
     
@@ -84,9 +114,22 @@ public class ProductoMB extends BaseBean implements Serializable {
         return "/producto/productoForm.xhtml?faces-redirect=true";
     }
     
-    public String preparedIndex(){
+    public String preparedVisualise(){
+        setAccion(ACC_VISUALIZAR);
+        return "/producto/datosProducto.xhtml?faces-redirect=true";
+    }
+    
+    public String preparedListadoProductos(){
         init();
-        return "/producto/listadoProductos?faces-redirect=true";
+        return "listadoProductos?faces-redirect=true";
+    }
+    
+    public String preparedListadoCategorias(){
+        return "./categorias/listadoCategorias?faces-redirect=true";
+    }
+    
+    public String preparedIndex(){
+        return "./index?faces-redirect=true";
     }
     
     public Boolean validate(){
@@ -101,14 +144,11 @@ public class ProductoMB extends BaseBean implements Serializable {
     public String add(){
         Boolean valido = validate();
         if(valido){
-            Categoria cat = new Categoria();
-            cat.setIdCategoria(dto.getIdCat());
-            cat = daoCat.read(cat);
-            dto.setIdCategoria(cat);
+            
             
             dao.create(dto);
             if(valido)
-                return preparedIndex();
+                return preparedListadoProductos();
             else
                 return preparedAdd();
         }
@@ -118,18 +158,27 @@ public class ProductoMB extends BaseBean implements Serializable {
     public String update(){
         Boolean valido = validate();
         if(valido){
+            Categoria cat = new Categoria();
+            cat.setIdCategoria(dto.getIdCat());
+            cat = daoCat.read(cat);
+            dto.setIdCategoria(cat);
+            
             dao.update(dto);
-            if(valido)
-                return preparedIndex();
-            else
+            if(valido){
+                msg=true;
+            mensaje = "Producto ["+dto.getIdProducto()+"] Actualizado";
+            alert = "alert-success";
+                return preparedListadoProductos();
+            }else{
                 return preparedUpdate();
+            }
         }
         return preparedUpdate();
     }
     
     public String delete(){
         dao.delete(dto);
-        return preparedIndex();
+        return preparedListadoProductos();
     }
     
     public void seleccionarProducto(ActionEvent event){
@@ -141,5 +190,11 @@ public class ProductoMB extends BaseBean implements Serializable {
         }catch(Exception e){
             e.printStackTrace();
         }
+    }
+    
+    public void resetarMensaje(){
+        msg=false;
+        mensaje="";
+        alert="";
     }
 }

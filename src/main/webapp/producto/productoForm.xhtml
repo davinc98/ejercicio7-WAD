@@ -10,67 +10,79 @@
     </h:head>
     <h:body>
         <div class="container">
-            
-            
-            
-            
-            
-            
-            <div class="card border-primary mb-3">
-                <div class="card-header">
-                    <h2 class="text-center text-primary">Producto</h2>
-                </div>
-                <div class="card-body text-primary table-responsive">
-                    <f:view>
-                        <h:form id="frmProductoForm">
-                            <h:inputHidden id="accion" value="#{productoMB.accion}"/>
-                            <h:panelGrid columns="3">
-                                
-                                <h:outputText value="Nombre: "/>
-                                <h:inputText id="txtNombre" value="#{productoMB.dto.nombreProducto}"
-                                             class="form-control"/>
-                                <h:message for="txtNombre"/>
-                                
-                                <h:outputText value="Descripción:  "/>
-                                <h:inputText id="txtDescripcion" value="#{productoMB.dto.descripcionProducto}"
-                                             class="form-control"/>
-                                <h:message for="txtDescripcion"/>
-                                
-                                <h:outputText value="Precio "/>
-                                <h:inputText id="txtPrecio" value="#{productoMB.dto.precio}"
-                                             class="form-control"/>
-                                <h:message for="txtPrecio"/>
-                                
-                                <h:outputText value="Existencia "/>
-                                <h:inputText id="txtExistencia" value="#{productoMB.dto.existencia}"
-                                             class="form-control"/>
-                                <h:message for="txtExistencia"/>
-                                
-                                <h:outputText value="Categoria: "/>
-                                <h:selectOneMenu id="cboCategoria" value="#{productoMB.dto.idCat}"
-                                                 class="form-control">
-                                    <f:selectItems value="#{productoMB.listaCategoria}" var="cat"
-                                                   itemLabel="#{cat.nombreCategoria}"
-                                                   itemValue="#{cat.idCategoria}"/>
-                                </h:selectOneMenu>
-                                <h:message for="cboCategoria"/>
-                                
+
+            <center>
+
+                <br/><br/>
+
+
+                <div class="card border-primary mb-3 col-sm-4">
+                    <div class="card-header">
+                        <h2 class="text-center text-primary">Producto</h2>
+                    </div>
+                    <div class="card-body text-primary table-responsive">
+                        <f:view>
+                            <h:form id="frmProductoForm">
+                                <h:inputHidden id="accion" value="#{productoMB.accion}"/>
+                                <h:panelGrid columns="3">
+
+                                    <h:outputText value="Nombre: "/>
+                                    <h:inputText id="txtNombre" value="#{productoMB.dto.nombreProducto}"
+                                                 class="form-control" required="true"/>
+                                    <!--<h:message for="txtNombre"/>-->
+
+                                    <h:outputText value="Descripción:  "/>
+                                    <h:inputText id="txtDescripcion" value="#{productoMB.dto.descripcionProducto}"
+                                                 class="form-control" required="true"/>
+                                    <!--<h:message for="txtDescripcion"/>-->
+
+                                    <h:outputText value="Precio "/>
+                                    <h:inputText id="txtPrecio" value="#{productoMB.dto.precio}"
+                                                 class="form-control" required="true"/>
+                                    <!--<h:message for="txtPrecio"/>-->
+
+                                    <h:outputText value="Existencia "/>
+                                    <h:inputText id="txtExistencia" value="#{productoMB.dto.existencia}"
+                                                 class="form-control" required="true"/>
+                                    <!--<h:message for="txtExistencia"/>-->
+
+                                    <h:outputText value="Stock Minimo: "/>
+                                    <h:inputText id="txtSm" value="#{productoMB.dto.stockMinimo}"
+                                                 class="form-control" required="true"/>
+                                    <!--<h:message for="txtSm"/>-->
+
+                                    <h:outputText value="Categoria: "/>
+                                    <h:selectOneMenu id="cboCategoria" value="#{productoMB.dto.idCat}"
+                                                     class="form-select">
+                                        <f:selectItems value="#{productoMB.listaCategoria}" var="cat"
+                                                       itemLabel="#{cat.nombreCategoria}"
+                                                       itemValue="#{cat.idCategoria}"/>
+                                    </h:selectOneMenu>
+                                    <!--<h:message for="cboCategoria"/>-->
+
+                                </h:panelGrid>
+                                <br/>
                                 <h:commandButton action="#{productoMB.add()}"
                                                  value="Almacenar Producto"
-                                                 class="btn btn-outline-success"
+                                                 class="btn btn-outline-success d-block"
                                                  rendered="#{productoMB.modoCrear}"/>
-                                
+
                                 <h:commandButton action="#{productoMB.update()}"
                                                  value="Actualizar Producto"
-                                                 class="btn btn-outline-info"
+                                                 class="btn btn-outline-success d-block"
                                                  rendered="#{productoMB.modoActualizar}"/>
-                            </h:panelGrid>
-                        </h:form>
-                    </f:view>
+                            </h:form>
+                            <br/>
+                            <h:form id="frmPForm">
+                                <h:commandLink action="listadoProductos?faces-redirect=true" 
+                                               class="btn btn-outline-info d-block">
+                                    Regresar
+                                </h:commandLink>
+                            </h:form>
+                        </f:view>
+                    </div>
                 </div>
-            </div>
-            
-            
+            </center>
         </div>
     </h:body>
 </html>

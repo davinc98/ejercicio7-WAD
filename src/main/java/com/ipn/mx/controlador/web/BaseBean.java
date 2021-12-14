@@ -14,6 +14,7 @@ import java.io.Serializable;
 public class BaseBean implements Serializable{
     protected static final String ACC_CREAR = "CREAR";
     protected static final String ACC_ACTUALIZAR = "ACTUALIZAR";
+    protected static final String ACC_VISUALIZAR = "VISUALIZAR";
     
     protected String accion;
     
@@ -28,6 +29,14 @@ public class BaseBean implements Serializable{
     public boolean isModoActualizar(){
         if(accion != null){
             return accion.equals(ACC_ACTUALIZAR);
+        }else{
+            return false;
+        }
+    }
+    
+    public boolean isModoVisualizar(){
+        if(accion != null){
+            return accion.equals(ACC_VISUALIZAR);
         }else{
             return false;
         }

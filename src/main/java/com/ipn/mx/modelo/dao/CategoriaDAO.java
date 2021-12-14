@@ -46,26 +46,7 @@ public class CategoriaDAO {
             }
         }
     }
-    
-//    public void delete(CategoriaDTO dto){
-//        Session s = HibernateUtil.getSessiobFactory().getCurrentSession();
-//        Transaction tx = s.getTransaction();
-//                
-//        try{
-//            tx.begin();
-//            
-//            //Recuperar la entidad completa
-//            dto.setEntidad(s.get(dto.getEntidad().getClass(), dto.getEntidad().getIdCategoria()));
-//            
-//            s.delete(dto.getEntidad());
-//            tx.commit();
-//        }catch(HibernateException e){
-//            if(tx != null && tx.isActive()){
-//                tx.rollback();
-//            }
-//        }
-//    }
-    
+        
     public Categoria delete(Categoria dto){
         Session s = HibernateUtil.getSessiobFactory().getCurrentSession();
         Transaction tx = s.getTransaction();
@@ -130,9 +111,9 @@ public class CategoriaDAO {
         Categoria dto = new Categoria();
        
 //        dto.setIdCategoria(3);
-//        dto.setNombreCategoria("Categoria prueba X");
-//        dto.setDescripcionCategoria("Descripcion prueba x");
-//        dao.create(dto);
+        dto.setNombreCategoria("Categoria prueba X");
+        dto.setDescripcionCategoria("Descripcion prueba x");
+        dao.create(dto);
         
 //        dao.delete(dto);
         

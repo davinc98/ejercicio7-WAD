@@ -8,47 +8,68 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
     </h:head>
     <h:body>
-
-        <div class="container">
-
-            <h:form id="frmInicial">
+        <h:form id="frmInicial">
+            <div class="container">
 
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <div class="container-fluid">
-                        <a class="navbar-brand" href="#">
-                            <img src="/imagenes/bootstrap-logo.svg" alt="" width="30" height="24" class="d-inline-block align-text-top"/>
-                            J. Perez
-                        </a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
-                        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                            <ul class="navbar-nav">
+                        <div class="collapse navbar-collapse" id="navbarText">
+                            <ul class="nav justify-content-center nav-fill">
+
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="index.jsp">Inicio</a>
-                                </li>
-                                <li class="nav-item">
-                                    <h:commandLink action="categoria/listadoCategorias?faces-redirect=true" class="nav-link">
-                                        Listado de Categorias
+                                    <h:commandLink action="#{indexMB.preparedIndex()}" class="nav-link active">
+                                        Inicio
                                     </h:commandLink>
                                 </li>
                                 <li class="nav-item">
-                                    <h:commandLink action="producto/listadoProductos?faces-redirect=true" class="nav-link">
-                                        Listado de Productos
+                                    <h:commandLink action="#{indexMB.preparedListadoCategorias()}" class="nav-link">
+                                        Categorias
+                                    </h:commandLink>
+                                </li>
+                                <li class="nav-item">
+                                    <h:commandLink action="#{indexMB.preparedListadoProductos()}" class="nav-link">
+                                        Productos
                                     </h:commandLink>
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </nav>
+                
+                <br/>
 
 
 
-            </h:form>
+                <center>
+                    <br/>
+                    <br/>
 
 
 
-        </div>
+                    <h2>Web Application Development</h2>
+                    <h3>Perez Federico Jose Joel</h3>
+
+                    <br/>
+                    <br/>
+
+                    <h1>EJERCICIO 7</h1>
+
+
+
+                    <br/>
+
+                    <h1>HIBERNATE</h1>
+                    <h1>Java Server Faces</h1>
+                    <!--<h5>Dependencia Hibernate y modelo ORM</h5>-->
+                </center>
+
+
+
+            </div>
+        </h:form>
     </h:body>
 </html>
 
